@@ -52,7 +52,7 @@ const Home = () => {
                                 {index + 1}
                             </td>
                             <td className='border border-slate-700 rounded-md text-center'>
-                                {book.tile}
+                                {book.title}
                             </td>
                             <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
                                 {book.author}
