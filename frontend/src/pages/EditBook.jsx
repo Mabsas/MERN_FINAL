@@ -9,9 +9,10 @@ const EditBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
-  const [description, setDescription] = useState(''); // New state for description
-  const [pictureURL, setPictureURL] = useState('');   // New state for picture URL
+  const [description, setDescription] = useState('');
+  const [pictureURL, setPictureURL] = useState('');
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(''); // State for success message
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -23,8 +24,8 @@ const EditBook = () => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publishYear);
         setTitle(response.data.title);
-        setDescription(response.data.description); // Populate description
-        setPictureURL(response.data.pictureURL);   // Populate picture URL
+        setDescription(response.data.description);
+        setPictureURL(response.data.pictureURL);
         setLoading(false);
       })
       .catch((error) => {
@@ -39,15 +40,19 @@ const EditBook = () => {
       title,
       author,
       publishYear,
-      description,   // Include description in the payload
-      pictureURL,    // Include picture URL in the payload
+      description,
+      pictureURL,
     };
     setLoading(true);
     axios
       .put(`http://localhost:5555/books/${id}`, data)
       .then(() => {
         setLoading(false);
-        navigate('/');
+        setSuccessMessage('Edited successfully!'); // Set success message
+        setTimeout(() => {
+          setSuccessMessage(''); // Clear message after 3 seconds
+          navigate('/');
+        }, 3000);
       })
       .catch((error) => {
         setLoading(false);
@@ -63,7 +68,13 @@ const EditBook = () => {
         <h1 className={styles.title}>Edit Book</h1>
       </div>
       {loading ? <Spinner /> : ''}
+      {successMessage && (
+        <div className={styles.successMessage}>
+          {successMessage}
+        </div>
+      )}
       <div className={styles.formContainer}>
+        {/* Form fields */}
         <div className={styles.formField}>
           <label className={styles.formLabel}>Title</label>
           <input
