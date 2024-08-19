@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
+import styles from '../css/ShowBook.module.css'; // Import the CSS module
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
@@ -24,44 +25,46 @@ const ShowBook = () => {
   }, [id]);
 
   return (
-    <div className='p-4'>
+    <div className={styles.container}>
       <BackButton />
-      <h1 className='text-3xl my-4'>Show Book</h1>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Show Book</h1>
+      </div>
       {loading ? (
         <Spinner />
       ) : (
-        <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Id</span>
-            <span>{book._id}</span>
+        <div className={styles.detailsContainer}>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Id:</span>
+            <span className={styles.detailValue}>{book._id}</span>
           </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Title</span>
-            <span>{book.title}</span>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Title:</span>
+            <span className={styles.detailValue}>{book.title}</span>
           </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Author</span>
-            <span>{book.author}</span>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Author:</span>
+            <span className={styles.detailValue}>{book.author}</span>
           </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Publish Year</span>
-            <span>{book.publishYear}</span>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Publish Year:</span>
+            <span className={styles.detailValue}>{book.publishYear}</span>
           </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Create Time</span>
-            <span>{new Date(book.createdAt).toString()}</span>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Create Time:</span>
+            <span className={styles.detailValue}>{new Date(book.createdAt).toString()}</span>
           </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Last Update Time</span>
-            <span>{new Date(book.updatedAt).toString()}</span>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Last Update Time:</span>
+            <span className={styles.detailValue}>{new Date(book.updatedAt).toString()}</span>
           </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Description</span>
-            <span>{book.description}</span>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Description:</span>
+            <span className={styles.detailValue}>{book.description}</span>
           </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Picture</span>
-            <img src={book.pictureURL} alt={book.title} className='w-64 h-auto rounded-md' />
+          <div className={styles.imageContainer}>
+            <span className={styles.detailLabel}>Picture:</span>
+            <img src={book.pictureURL} alt={book.title} className={styles.image} />
           </div>
         </div>
       )}
