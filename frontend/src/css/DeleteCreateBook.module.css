@@ -1,4 +1,4 @@
-/* DeleteCreateBook.module.css */
+/* src/css/DeleteCreateBook.module.css */
 .container {
     padding: 1rem;
     background-color: #1c1c1c;
@@ -91,7 +91,7 @@
 }
 
 .alertButton {
-    background-color: #red-600;
+    background-color: #ef4444; /* Red-600 color */
     color: #fff;
     padding: 0.5rem 1rem;
     border: none;
@@ -104,6 +104,16 @@
 
 .alertButton:hover {
     background-color: #cc0000;
+}
+
+.successMessage {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 @media (max-width: 768px) {
