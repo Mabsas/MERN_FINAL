@@ -13,6 +13,14 @@ const bookSchema = mongoose.Schema(
         publishYear: {
             type: Number,
             required: true,
+        },
+        description: {
+            type: String,
+            required: false, 
+        },
+        pictureURL: {
+            type: String,
+            required: false, 
         }
     },
     {
@@ -20,5 +28,4 @@ const bookSchema = mongoose.Schema(
     }
 );
 
-
-export const Book =  mongoose.model('book' , bookSchema);
+export const Book = mongoose.model('book', bookSchema);

@@ -5,12 +5,11 @@ import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-
+import styles from '../css/Home.module.css'; // Import the CSS module
 
 const Home = () => {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [showType, setShowType] = useState('table');
 
     useEffect(() => {
         setLoading(true);
@@ -27,15 +26,15 @@ const Home = () => {
     }, []);
 
     return (
-        <div className='p-4'>
-            <div className='flex justify-between items-center'>
-                <h1 className='text-3xl my-8'>Book List</h1>
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <h1 className={styles.title}>Book List</h1>
                 <Link to='/books/create'>
-                    <MdOutlineAddBox className='text-sky-800 text-4xl' />
+                    <MdOutlineAddBox className={styles.addButton} />
                 </Link>
             </div>
             {loading ? (<Spinner />
-            ) : (<table className='w-full border-seperate border-spacing-2'>
+            ) : (<table className={styles.table}>
                 <thead>
                     <tr>
                         <th className='border border-slate-600 rounded-md '>No</th>
@@ -61,15 +60,15 @@ const Home = () => {
                                 {book.publishYear}
                             </td>
                             <td className='border border-slate-700 rounded-md text-center'>
-                                <div className='flex justify-center gap-x-4'>
-                                    <Link to={'/books/details/${book._id'}>
-                                        <BsInfoCircle className='text-2xl text-green-800' />
+                                <div className={styles.operations}>
+                                    <Link to={`/books/details/${book._id}`}>
+                                        <BsInfoCircle className={`${styles.icon} ${styles.info}`} />
                                     </Link>
-                                    <Link to={'/books/edit/${book._id'}>
-                                        <AiOutlineEdit className='text-2xl text-yellow-600' />
+                                    <Link to={`/books/edit/${book._id}`}>
+                                        <AiOutlineEdit className={`${styles.icon} ${styles.edit}`} />
                                     </Link>
-                                    <Link to={'/books/delete/${book._id'}>
-                                        <MdOutlineDelete className='text-2xl text-red-600' />
+                                    <Link to={`/books/delete/${book._id}`}>
+                                        <MdOutlineDelete className={`${styles.icon} ${styles.delete}`} />
                                     </Link>
                                 </div>
                             </td>

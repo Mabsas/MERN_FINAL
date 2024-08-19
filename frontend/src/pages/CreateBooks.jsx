@@ -9,16 +9,18 @@ const CreateBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
+  const [description, setDescription] = useState(''); // New state for description
+  const [pictureURL, setPictureURL] = useState(''); // New state for picture URL
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-
 
   const handleSaveBook = () => {
     const data = {
       title,
       author,
       publishYear,
+      description,    // Include description
+      pictureURL,     // Include picture URL
     };
     setLoading(true);
     axios
@@ -29,12 +31,10 @@ const CreateBook = () => {
       })
       .catch((error) => {
         setLoading(false);
-        alert('An error happened. Please Check console');
+        alert('An error happened. Please check the console');
         console.log(error);
       });
   };
-
-
 
   return (
     <div className='p-4'>
@@ -67,6 +67,23 @@ const CreateBook = () => {
             value={publishYear}
             onChange={(e) => setPublishYear(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
+          />
+        </div>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Description</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className='border-2 border-gray-500 px-4 py-2 w-full'
+          />
+        </div>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Picture URL</label>
+          <input
+            type='text'
+            value={pictureURL}
+            onChange={(e) => setPictureURL(e.target.value)}
+            className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>
         <button className='p-2 bg-sky-300 m-8' onClick={handleSaveBook}>

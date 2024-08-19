@@ -1,0 +1,164 @@
+/* Home.module.css */
+.container {
+    padding: 1rem;
+    background-color: #1c1c1c;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: center; /* Center the title */
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative; /* For positioning additional elements */
+}
+
+.title {
+    font-size: 3rem;
+    color: #f0f0f0;
+    text-align: center;
+    position: relative;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(to right, #444, #1c1c1c, #444); /* Background gradient */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    z-index: 1; /* Ensure it is above the design elements */
+}
+
+.title:hover {
+    color: #00aaff;
+    transform: scale(1.1);
+}
+
+.title::before, .title::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background-color: #00aaff;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.title::before {
+    left: -110px; /* Position line to the left of the title */
+}
+
+.title::after {
+    right: -110px; /* Position line to the right of the title */
+}
+
+.addButton {
+    color: #00aaff;
+    font-size: 2.5rem;
+    transition: color 0.3s ease;
+    position: absolute;
+    right: 1rem;
+}
+
+.addButton:hover {
+    color: #0077cc;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0.5rem;
+}
+
+.table th,
+.table td {
+    border: 1px solid #444;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 0.25rem;
+}
+
+.table th {
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+}
+
+.table td {
+    background-color: #333;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.table tr {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.table tr:hover td {
+    background-color: #444;
+    transform: translateX(5px);
+}
+
+.operations {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.icon {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.icon.info {
+    color: #4caf50;
+}
+
+.icon.info:hover {
+    color: #388e3c;
+}
+
+.icon.edit {
+    color: #ffeb3b;
+}
+
+.icon.edit:hover {
+    color: #fbc02d;
+}
+
+.icon.delete {
+    color: #f44336;
+}
+
+.icon.delete:hover {
+    color: #d32f2f;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .title::before, .title::after {
+        width: 50px;
+    }
+
+    .addButton {
+        right: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .table th.max-md-hidden,
+    .table td.max-md-hidden {
+        display: none;
+    }
+}

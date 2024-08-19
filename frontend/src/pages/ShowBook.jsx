@@ -14,7 +14,6 @@ const ShowBook = () => {
     axios
       .get(`http://localhost:5555/books/${id}`)
       .then((response) => {
-        //console.log(response.data);
         setBook(response.data);
         setLoading(false);
       })
@@ -22,7 +21,7 @@ const ShowBook = () => {
         console.log(error);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className='p-4'>
@@ -56,11 +55,18 @@ const ShowBook = () => {
             <span className='text-xl mr-4 text-gray-500'>Last Update Time</span>
             <span>{new Date(book.updatedAt).toString()}</span>
           </div>
+          <div className='my-4'>
+            <span className='text-xl mr-4 text-gray-500'>Description</span>
+            <span>{book.description}</span>
+          </div>
+          <div className='my-4'>
+            <span className='text-xl mr-4 text-gray-500'>Picture</span>
+            <img src={book.pictureURL} alt={book.title} className='w-64 h-auto rounded-md' />
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-
-export default ShowBook
+export default ShowBook;
