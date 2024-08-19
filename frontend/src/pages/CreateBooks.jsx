@@ -1,3 +1,4 @@
+// src/pages/CreateBook.js
 import React, { useState } from 'react';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
@@ -6,13 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../css/CreateBook.module.css'; // Import the CSS module
 
 const CreateBook = () => {
-
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
-  const [description, setDescription] = useState(''); // New state for description
-  const [pictureURL, setPictureURL] = useState(''); // New state for picture URL
+  const [description, setDescription] = useState('');
+  const [pictureURL, setPictureURL] = useState('');
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSaveBook = () => {
@@ -20,19 +21,23 @@ const CreateBook = () => {
       title,
       author,
       publishYear,
-      description,    // Include description
-      pictureURL,     // Include picture URL
+      description,
+      pictureURL,
     };
     setLoading(true);
     axios
       .post('http://localhost:5555/books', data)
       .then(() => {
         setLoading(false);
-        navigate('/');
+        setSuccessMessage('Book Added Successfully!');
+        setTimeout(() => {
+          setSuccessMessage('');
+          navigate('/');
+        }, 3000); // Show the success message for 3 seconds
       })
       .catch((error) => {
         setLoading(false);
-        alert('An error happened. Please check the console');
+        alert('An error happened. Please check the console.');
         console.log(error);
       });
   };
@@ -44,6 +49,9 @@ const CreateBook = () => {
         <h1 className={styles.title}>Create Book</h1>
       </div>
       {loading ? <Spinner /> : ''}
+      {successMessage && (
+        <div className={styles.successMessage}>{successMessage}</div>
+      )}
       <div className={styles.formContainer}>
         <div className={styles.formField}>
           <label className={styles.formLabel}>Title</label>
