@@ -28,7 +28,7 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h1 className={styles.title}>Book List</h1>
+                <h1 className={styles.title}>The Story Shelf</h1>
                 <Link to='/books/create'>
                     <MdOutlineAddBox className={styles.addButton} />
                 </Link>

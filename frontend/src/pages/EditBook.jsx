@@ -9,6 +9,7 @@ const EditBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
+  const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [pictureURL, setPictureURL] = useState('');
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ const EditBook = () => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publishYear);
         setTitle(response.data.title);
+        setPrice(response.data.price);
         setDescription(response.data.description);
         setPictureURL(response.data.pictureURL);
         setLoading(false);
@@ -40,6 +42,7 @@ const EditBook = () => {
       title,
       author,
       publishYear,
+      price,
       description,
       pictureURL,
     };
@@ -99,6 +102,15 @@ const EditBook = () => {
             type='number'
             value={publishYear}
             onChange={(e) => setPublishYear(e.target.value)}
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.formField}>
+          <label className={styles.formLabel}>Price</label>
+          <input
+            type='text'
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             className={styles.input}
           />
         </div>

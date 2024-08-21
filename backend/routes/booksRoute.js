@@ -5,7 +5,7 @@ const router = express.Router();
 // Route for Save a new Book
 router.post('/', async (request, response) => {
   try {
-    const { title, author, publishYear, description, pictureURL } = request.body;
+    const { title, author, publishYear,price, description, pictureURL } = request.body;
 
     if (!title || !author || !publishYear) {
       return response.status(400).send({
@@ -17,6 +17,7 @@ router.post('/', async (request, response) => {
       title,
       author,
       publishYear,
+      price,
       description,    
       pictureURL,     
     };
@@ -63,7 +64,7 @@ router.get('/:id', async (request, response) => {
 // Route for Update a Book
 router.put('/:id', async (request, response) => {
   try {
-    const { title, author, publishYear, description, pictureURL } = request.body;
+    const { title, author, publishYear, price, description, pictureURL } = request.body;
 
     if (!title || !author || !publishYear) {
       return response.status(400).send({
@@ -73,7 +74,7 @@ router.put('/:id', async (request, response) => {
 
     const { id } = request.params;
 
-    const result = await Book.findByIdAndUpdate(id, { title, author, publishYear, description, pictureURL });
+    const result = await Book.findByIdAndUpdate(id, { title, author, publishYear, price, description, pictureURL });
 
     if (!result) {
       return response.status(404).json({ message: 'Book not found' });

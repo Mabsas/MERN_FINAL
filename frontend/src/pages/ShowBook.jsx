@@ -28,7 +28,7 @@ const ShowBook = () => {
     <div className={styles.container}>
       <BackButton />
       <div className={styles.header}>
-        <h1 className={styles.title}>Show Book</h1>
+        <h1 className={styles.title}>About Book</h1>
       </div>
       {loading ? (
         <Spinner />
@@ -42,6 +42,10 @@ const ShowBook = () => {
             <span className={styles.detailLabel}>Title:</span>
             <span className={styles.detailValue}>{book.title}</span>
           </div>
+          <div className={styles.imageContainer}>
+            <span className={styles.detailLabel}>Picture:</span>
+            <img src={book.pictureURL} alt={book.title} className={styles.image} />
+          </div>
           <div className={styles.detail}>
             <span className={styles.detailLabel}>Author:</span>
             <span className={styles.detailValue}>{book.author}</span>
@@ -51,21 +55,22 @@ const ShowBook = () => {
             <span className={styles.detailValue}>{book.publishYear}</span>
           </div>
           <div className={styles.detail}>
-            <span className={styles.detailLabel}>Create Time:</span>
-            <span className={styles.detailValue}>{new Date(book.createdAt).toString()}</span>
-          </div>
-          <div className={styles.detail}>
-            <span className={styles.detailLabel}>Last Update Time:</span>
-            <span className={styles.detailValue}>{new Date(book.updatedAt).toString()}</span>
-          </div>
-          <div className={styles.detail}>
             <span className={styles.detailLabel}>Description:</span>
             <span className={styles.detailValue}>{book.description}</span>
           </div>
-          <div className={styles.imageContainer}>
-            <span className={styles.detailLabel}>Picture:</span>
-            <img src={book.pictureURL} alt={book.title} className={styles.image} />
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Price:</span>
+            <span className={styles.detailValue}>{book.price}</span>
           </div>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Added:</span>
+            <span className={styles.detailValue}>{new Date(book.createdAt).toDateString()}</span>
+          </div>
+          <div className={styles.detail}>
+            <span className={styles.detailLabel}>Last Update:</span>
+            <span className={styles.detailValue}>{new Date(book.updatedAt).toDateString()}</span>
+          </div>
+
         </div>
       )}
     </div>

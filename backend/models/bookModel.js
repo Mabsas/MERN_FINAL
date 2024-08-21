@@ -14,6 +14,10 @@ const bookSchema = mongoose.Schema(
             type: Number,
             required: true,
         },
+        price: {
+            type: String,
+            required: true,
+        },
         description: {
             type: String,
             required: false, 

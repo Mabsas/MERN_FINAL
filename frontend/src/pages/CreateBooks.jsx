@@ -10,6 +10,7 @@ const CreateBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
+  const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [pictureURL, setPictureURL] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,7 @@ const CreateBook = () => {
       title,
       author,
       publishYear,
+      price,
       description,
       pictureURL,
     };
@@ -46,7 +48,7 @@ const CreateBook = () => {
     <div className={styles.container}>
       <BackButton />
       <div className={styles.header}>
-        <h1 className={styles.title}>Create Book</h1>
+        <h1 className={styles.title}>Add Book</h1>
       </div>
       {loading ? <Spinner /> : ''}
       {successMessage && (
@@ -77,6 +79,15 @@ const CreateBook = () => {
             type='number'
             value={publishYear}
             onChange={(e) => setPublishYear(e.target.value)}
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.formField}>
+          <label className={styles.formLabel}>Price</label>
+          <input
+            type='text'
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             className={styles.input}
           />
         </div>
